@@ -1,0 +1,13 @@
+<view>
+  <map
+    id="storeMap"
+    longitude="{{longitude}}"
+    latitude="{{latitude}}"
+    scale="{{scale}}"
+    controls="{{controls}}"
+    bindcontroltap="controltap"
+    markers="{{markers}}"
+    bindregionchange="regionchange"
+    show-location>
+  </map>
+</view>

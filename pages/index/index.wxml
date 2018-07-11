@@ -8,6 +8,20 @@
     bindcontroltap="controltap"
     markers="{{markers}}"
     bindregionchange="regionchange"
-    show-location>
+    show-location> 
   </map>
+  <cover-view class="weather">
+    <cover-view>
+      <cover-image class="weather-icon" src="/images/city.png" />
+      <cover-view class="weather-text">{{weather.currentCity}}</cover-view>
+    </cover-view>
+    <cover-view>
+      <cover-image class="weather-icon" src="/images/temperature.png" />
+      <cover-view class="weather-text">{{weather.temperature}}</cover-view>
+    </cover-view>
+    <cover-view>
+      <cover-image class="weather-icon" src="/images/weather.png" />
+      <cover-view class="weather-text">{{weather.weatherDesc}}</cover-view>
+    </cover-view>
+  </cover-view>
 </view>

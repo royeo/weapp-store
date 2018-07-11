@@ -20,6 +20,7 @@ Page({
     latitude: 39.908860,
     longitude: 116.397390,
     markers: [],
+    weather: {},
     appAuth: false,   // 小程序定位权限
     wxAuth: false     // 微信定位权限
   },
@@ -86,6 +87,7 @@ Page({
           appAuth: true,
           wxAuth: true
         });
+        this.showWeather();
       },
       fail: (err) => {
         // 小程序获取定位权限失败
@@ -181,6 +183,24 @@ Page({
       },
       fail: () => {
         this.showToast('网络出了点问题，请稍后再试');
+      }
+    });
+  },
+
+  /**
+   * 显示天气
+   */
+  showWeather() {
+    BMap.weather({
+      success: (data) => {
+        const weatherData = data.currentWeather[0];
+        this.setData({
+          weather: {
+            currentCity: weatherData.currentCity,
+            temperature: weatherData.temperature.replace(/\s/g, ''),
+            weatherDesc: weatherData.weatherDesc
+          }
+        });
       }
     });
   },

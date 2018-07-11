@@ -12,5 +12,29 @@
   bottom: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
+}
+
+.weather {
+  position: absolute;
+  width: 18%;
+  top: 1%;
+  left: 2%;
+  background: #fff;
+  padding: 10rpx;
+  font-size: 20rpx;
+  border-radius: 25rpx;
+  opacity: 0.8;
+  color: #000;
+}
+
+.weather-icon {
+  width: 30rpx; 
+  height: 30rpx;
+  float: left;
+  padding: 6rpx;
+}
+
+.weather-text {
+  margin-top: 10rpx;
+  margin-left: 45rpx;
 }

@@ -12,6 +12,10 @@
 
 ![](https://raw.githubusercontent.com/royeo/static/master/img/weapp-store.jpeg)
 
+## 二维码
+
+![](https://raw.githubusercontent.com/royeo/static/master/img/weapp-store-qrcode.jpg)
+
 ## 运行
 
 在 [百度地图开放平台](http://lbsyun.baidu.com/index.php?title=wxjsapi) 申请密钥 （ak），将申请到的 ak 替换 `pages/index/index.js` 中的 ak，即可搜索到附近的便利店。

@@ -12,7 +12,7 @@
 
 ![](https://raw.githubusercontent.com/royeo/static/master/img/weapp-store.jpeg)
 
-## 二维码
+## 小程序码
 
 ![](https://raw.githubusercontent.com/royeo/static/master/img/weapp-store-qrcode.jpg)
 

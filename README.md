@@ -18,10 +18,8 @@
 
 ## 运行
 
-在 [百度地图开放平台](http://lbsyun.baidu.com/index.php?title=wxjsapi) 申请密钥 （ak），将申请到的 ak 替换 `pages/index/index.js` 中的 ak，即可搜索到附近的便利店。
+在 [高德地图开放平台](https://console.amap.com/dev/key/app) 申请 key，将申请到的 key 替换 `pages/index/index.js` 中的 key，即可搜索到附近的便利店。
 
 ```js
-const BMap = new bmap.BMapWX({
-  ak: 'xxxxxx'  // 百度地图的 AK
-});
+const AMap = new amap.AMapWX({key:'xxxxxx'});
 ```

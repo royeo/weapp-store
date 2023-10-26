@@ -7,5 +7,6 @@
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "便利店在哪",
     "navigationBarTextStyle": "black"
-  }
+  },
+  "requiredPrivateInfos": ["getLocation"]
 }

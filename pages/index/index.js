@@ -1,8 +1,6 @@
-const bmap = require('../../libs/bmap/bmap-wx.min.js');
+const amap = require('../../libs/amap/amap-wx.js');
 
-const BMap = new bmap.BMapWX({
-  ak: 'xxxxxx'  // 百度地图的 AK
-});
+const AMap = new amap.AMapWX({key:'xxxxxx'});
 
 const CONTROLS = {
   LOCATION: 1,
@@ -166,43 +164,31 @@ Page({
   },
 
   /**
-   * 显示附近的便利店
-   *
-   * @param {object} location
-   */
-  showStores(location) {
-    BMap.search({
-      query: '便利店',
-      location: `${location.latitude},${location.longitude}`,
-      success: (res) => {
-        if (res.originalData.results.length) {
-          this.setMarkers(res.originalData.results);
-        } else {
-          this.showToast('没有搜索到您附近的便利店');
-        }
-      },
-      fail: () => {
-        this.showToast('网络出了点问题，请稍后再试');
-      }
-    });
-  },
-
-  /**
    * 显示天气
    */
   showWeather() {
-    BMap.weather({
+    AMap.getWeather({
       success: (data) => {
-        const weatherData = data.currentWeather[0];
+        console.log("get weather succ:", data);
         this.setData({
           weather: {
-            currentCity: weatherData.currentCity,
-            temperature: weatherData.temperature.replace(/\s/g, ''),
-            weatherDesc: weatherData.weatherDesc
+            currentCity: data.liveData.city,
+            temperature: data.liveData.temperature + "℃",
+            weatherDesc: data.liveData.weather
+          }
+        });
+      },
+      fail: (err) => {
+        console.log("get weather fail:", err);
+        this.setData({
+          weather: {
+            currentCity: "暂无数据",
+            temperature: "暂无数据",
+            weatherDesc: "暂无数据"
           }
         });
       }
-    });
+    })
   },
 
   /**
@@ -218,6 +204,29 @@ Page({
   },
 
   /**
+   * 显示附近的便利店
+   *
+   * @param {object} location
+   */
+  showStores(location) {
+    AMap.getPoiAround({
+      querykeywords: '便利店|超市',
+      success: (data) => {
+        console.log("get poi succ:", data);
+        if (data.markers.length) {
+          this.setMarkers(data.markers);
+        } else {
+          this.showToast('没有搜索到您附近的便利店');
+        }
+      },
+      fail: (err) => {
+        console.log("get poi fail:", err);
+        this.showToast('网络出了点问题，请稍后再试');
+      }
+    });
+  },
+
+  /**
    * 设置附近便利店的标记
    *
    * @param {array} stores
@@ -229,8 +238,8 @@ Page({
       stores[i].name = this.getShortStoreName(stores[i].name);
       markers.push({
         id: i,
-        latitude: stores[i].location.lat,
-        longitude: stores[i].location.lng,
+        latitude: stores[i].latitude,
+        longitude: stores[i].longitude,
         title: stores[i].name,
         iconPath: '/images/store.png',
         width: 50,
@@ -245,7 +254,7 @@ Page({
         }
       })
     }
-
+    
     this.setData({ markers: markers });
   },
 
